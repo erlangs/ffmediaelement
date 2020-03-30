@@ -54,6 +54,10 @@
                     var target = new Uri(uriString);
                     if (target.ToString().StartsWith(FileInputStream.Scheme, StringComparison.OrdinalIgnoreCase))
                         await m.Open(new FileInputStream(target.LocalPath));
+                    else if (target.ToString().StartsWith(DahuaInputStream.Scheme, StringComparison.OrdinalIgnoreCase))
+                        await m.Open(new DahuaInputStream(target));
+                    else if (target.ToString().StartsWith(ForgeInputStream.Scheme, StringComparison.OrdinalIgnoreCase))
+                        await m.Open(new ForgeInputStream(target.LocalPath));
                     else
                         await m.Open(target);
                 }
